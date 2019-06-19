@@ -30,8 +30,12 @@ function log {
 
     # Log so stderr in case of ERROR or FATAL
     if [ "$loglevel" = "ERROR" -o "$loglevel" = "FATAL" ]; then
-        printf "%s %-6s %s %s\n" "$(date)" "${loglevel}" "${PROCESS_NAME}" "${message}" >&2
+        printf "%s %-6s %s %s\n" "$(date)" "${loglevel}" "(${PROCESS_NAME})" "${message}" >&2
     else
         printf "%s %-6s %s %s\n" "$(date)" "${loglevel}" "(${PROCESS_NAME})" "${message}"
     fi
+}
+
+function echoerr { 
+    echo "$@" 1>&2;
 }

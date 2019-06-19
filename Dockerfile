@@ -1,16 +1,7 @@
 FROM docker:18.09
 
 RUN apk update
-RUN apk add bash ca-certificates
-
-# Install aws-cli for S3 endpoints
-RUN apk -Uuv add groff less python py-pip && \
-    pip install awscli && \
-    apk --purge -v del py-pip && \
-    rm /var/cache/apk/*
-
-# Install SSH for SFTP endpoints
-RUN apk -Uuv add openssh && \
+RUN apk -Uuv add bash ca-certificates openssl git openssh && \
     rm /var/cache/apk/*
 
 # Install JQ
